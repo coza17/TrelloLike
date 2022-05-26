@@ -1,17 +1,26 @@
-import { Container, Draggable } from "react-smooth-dnd";
+import { Droppable } from "react-beautiful-dnd";
 import Card from "../Card";
 import styles from "./index.module.less";
 export default (props: cardList) => {
   const { id, title, cards } = props;
   return (
-    <div className={styles.body}>
-        <div className={styles.title}>{title}</div>
-        {cards.map((item) => {
-          return (
-            <Card {...item} key={item.id} />
-          )
-        })}
-    </div>
+    <Droppable droppableId={id.toString()}>
+      {(provided) => {
+        return (
+          <div
+            className={styles.body}
+            {...provided.droppableProps}
+            ref={provided.innerRef}
+          >
+            <div className={styles.title}>{title}</div>
+            {cards.map((item, index) => {
+              return <Card {...item} key={item.id} index={index} id={item.id}/>;
+            })}
+            {provided.placeholder}
+          </div>
+        );
+      }}
+    </Droppable>
   );
 };
 
