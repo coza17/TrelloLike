@@ -11,8 +11,9 @@ export default (props: cardType) => {
             ref={provided.innerRef}
             {...provided.draggableProps}
             {...provided.dragHandleProps}
+            className={styles.body}
           >
-            <div className={styles.body}>
+            <div>
               {id}+{text}
             </div>
           </div>

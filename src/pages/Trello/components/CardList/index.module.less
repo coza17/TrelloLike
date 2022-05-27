@@ -1,8 +1,21 @@
 .body{
-    background-color: rgb(206, 206, 206);
+    // background-color: rgb(206, 206, 206);
     width: 300px;
     margin-right: 10px;
-    .title{
-        background-color: #bfa;
+    height: 100%;
+    .content{
+        box-sizing:border-box;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding-bottom: 30px;
+        .title{
+            background-color: #bfa;
+        }
+        .center{
+            background-color: rgb(211, 211, 211);
+            overflow-y: auto;
+            border-bottom: 1px solid black;
+        }
     }
 }
