@@ -5,28 +5,28 @@ const trello=atom({
     default:[
         {
             title:"待办",
-            id:0,
+            id:"list-0",
             cards:[
                 {
-                    id:0,
+                    id:"card-0",
                     text:"1st card"
                 },
                 {
-                    id:1,
+                    id:"card-1",
                     text:"2ed card"
                 }
             ]
         },
         {
             title:"办理",
-            id:1,
+            id:"list-1",
             cards:[
                 {
-                    id:0,
+                    id:"card-2",
                     text:"1 card"
                 },
                 {
-                    id:1,
+                    id:"card-3",
                     text:"2 card"
                 }
             ]

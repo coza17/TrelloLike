@@ -23,7 +23,7 @@ export default (props: cardType) => {
 };
 
 type cardType = {
-  id?: number;
+  id?: string;
   text?: string;
   index: number;
 };

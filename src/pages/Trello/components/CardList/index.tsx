@@ -25,10 +25,10 @@ export default (props: cardList) => {
 };
 
 type cardList = {
-  id: number;
+  id: string;
   title: string;
   cards: {
-    id: number;
+    id: string;
     text: string;
   }[];
 };
