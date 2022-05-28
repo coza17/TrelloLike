@@ -28,7 +28,11 @@ ok列表拖拽
     设置方向
     The direction in which items flow in this droppable. Options are 
     vertical (default) and horizontal 水平.
-添加列表、卡片
+flex 列方向 不设置高度超出 设置固定高度不超出？？
+    src\pages\Trello\index.module.less
+ok添加列表
+添加卡片
+添加样式优化
 删除卡片
 卡片内容
 新板块

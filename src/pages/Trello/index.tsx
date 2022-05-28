@@ -1,5 +1,6 @@
 import store from "@/models/store";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import AddList from "./components/AddList";
 import CardList from "./components/CardList";
 import styles from "./index.module.less";
 export default () => {
@@ -46,6 +47,10 @@ export default () => {
     }
   };
   return (
+    <>
+    <div className={styles.all}>
+    <div>trello like</div>
+    
     <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="list">
         {(provided) => {
@@ -60,11 +65,14 @@ export default () => {
                   return <CardList {...item} key={item.id} index={index} />;
                 })}
                 {provided.placeholder}
+                <AddList/>
               </div>
             </>
           );
         }}
       </Droppable>
     </DragDropContext>
+    </div>
+    </>
   );
 };
