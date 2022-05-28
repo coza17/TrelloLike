@@ -18,12 +18,17 @@ ok拖拽时列表 center 高度减小，无法放置于列表尾部
 ok拖入与拖出时高度没增加，最底下背景色纯白，放下时增加。
 ok拿出时高度减少、放下时高度增加
     {provided.placeholder}位置错误
-ok最底部拖拽时闪，先占位下再删除占位？
+ok最底部拖拽时闪，先在占位下再删除占位？ 
     由于存在滚动条，影响拖拽位置判断？
     容器或父级可滚动，而非子容器。
     {...provided.droppableProps} ref={provided.innerRef}与overflow:auto同容器
     https://github.com/atlassian/react-beautiful-dnd/blob/master/docs/guides/auto-scrolling.md
-列表拖拽
+ok列表拖拽
+    占位失效？
+    设置方向
+    The direction in which items flow in this droppable. Options are 
+    vertical (default) and horizontal 水平.
 添加列表、卡片
 删除卡片
 卡片内容
+新板块

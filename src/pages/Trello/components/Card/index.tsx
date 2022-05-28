@@ -2,7 +2,7 @@ import { Draggable } from "react-beautiful-dnd";
 import styles from "./index.module.less";
 
 export default (props: cardType) => {
-  const { id = 0, text = "eeee", index } = props;
+  const { id = 0, text = "eeee", index=1 } = props;
   return (
     <Draggable draggableId={id.toString()} index={index}>
       {(provided) => {
