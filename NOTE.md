@@ -35,7 +35,7 @@ ok添加卡片
 添加样式优化
     box-shadow
     Input.TextArea中autoSize={true}出现抖动
-    card单行
+    card中div文本换行
         word-break:break-all;
         word-wrap:break-word; 
 ok修改卡片
