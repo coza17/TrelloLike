@@ -33,6 +33,11 @@ flex 列方向 不设置高度超出 设置固定高度不超出？？
 ok添加列表
 ok添加卡片
 添加样式优化
+    box-shadow
+    Input.TextArea中autoSize={true}出现抖动
+    card单行
+        word-break:break-all;
+        word-wrap:break-word; 
 ok修改卡片
 ok删除卡片
 ok删除列表
@@ -40,3 +45,5 @@ ok删除列表
 卡片详情内容
     state
 新板块
+
+shallowequal?

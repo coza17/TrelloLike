@@ -5,16 +5,16 @@ import Card from "../Card";
 import styles from "./index.module.less";
 export default (props: cardList) => {
   const { id, title, cards, index } = props;
-  const {state,setState}=store()
-  const handleDelete=()=>{
-    const newState=JSON.parse(JSON.stringify(state))
-    newState.forEach((listItem:any,index:number)=>{
-      if(listItem.id===id){
-        newState.splice(index,1)
+  const { state, setState } = store();
+  const handleDelete = () => {
+    const newState = JSON.parse(JSON.stringify(state));
+    newState.forEach((listItem: any, index: number) => {
+      if (listItem.id === id) {
+        newState.splice(index, 1);
       }
-    })
-    setState(newState)
-  }
+    });
+    setState(newState);
+  };
   return (
     <Draggable draggableId={id.toString()} index={index}>
       {(dragProvided) => {
@@ -22,15 +22,20 @@ export default (props: cardList) => {
           <div
             ref={dragProvided.innerRef}
             {...dragProvided.draggableProps}
-            className="list"
+            // className="list"
           >
             <Droppable droppableId={id.toString()} type="card">
               {(provided) => {
                 return (
-                  <div className={`${styles.body}`}>
+                  <div className={styles.body}>
                     <div className={styles.content}>
-                      <div className={styles.title} {...dragProvided.dragHandleProps}>{title}</div>
-                      <div onClick={handleDelete}>删除</div>
+                      <div
+                        className={styles.header}
+                        {...dragProvided.dragHandleProps}
+                      >
+                        {title}
+                        <span onClick={handleDelete} className={styles.delete}>删除</span>
+                      </div>
                       <div
                         className={styles.center}
                         {...provided.droppableProps}
@@ -47,9 +52,8 @@ export default (props: cardList) => {
                           );
                         })}
                         {provided.placeholder}
+                      <AddCard listId={id} />
                       </div>
-                      <AddCard listId={id}/>
-                      {/* <div className={styles.add}>add</div> */}
                     </div>
                   </div>
                 );

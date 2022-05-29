@@ -50,8 +50,7 @@ export default () => {
   return (
     <>
     <div className={styles.all}>
-    <div>trello like</div>
-    
+    <div className={styles.header}>trello like</div>
     <DragDropContext onDragEnd={handleDragEnd}>
       <Droppable droppableId="board" direction="horizontal" type="list">
         {(provided) => {
