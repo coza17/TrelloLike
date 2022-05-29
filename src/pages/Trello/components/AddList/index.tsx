@@ -29,9 +29,9 @@ export default ()=>{
                 {
                     editState?
                     <div>
-                        <Input onChange={e=>setInputState(e.target.value)}/>
+                        <Input value={inputState} onChange={e=>setInputState(e.target.value)}/>
                         <Button onClick={handleAdd}>添加列表</Button>
-                        <Button>X</Button>
+                        <Button onClick={handleEdit}>X</Button>
                     </div>
                     :
                     <div onClick={handleEdit}>add list</div>

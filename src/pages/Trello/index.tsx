@@ -2,6 +2,7 @@ import store from "@/models/store";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import AddList from "./components/AddList";
 import CardList from "./components/CardList";
+import Modal from "./components/Modal";
 import styles from "./index.module.less";
 export default () => {
   const { state, setState } = store();
@@ -71,6 +72,7 @@ export default () => {
           );
         }}
       </Droppable>
+      <Modal/>
     </DragDropContext>
     </div>
     </>

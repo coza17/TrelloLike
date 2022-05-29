@@ -1,4 +1,5 @@
 import { Draggable, Droppable } from "react-beautiful-dnd";
+import AddCard from "../AddCard";
 import Card from "../Card";
 import styles from "./index.module.less";
 export default (props: cardList) => {
@@ -35,7 +36,8 @@ export default (props: cardList) => {
                         })}
                         {provided.placeholder}
                       </div>
-                      <div className={styles.add}>add</div>
+                      <AddCard listId={id}/>
+                      {/* <div className={styles.add}>add</div> */}
                     </div>
                   </div>
                 );

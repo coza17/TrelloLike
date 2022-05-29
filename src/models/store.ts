@@ -123,7 +123,7 @@ const listId = atom({
 });
 const cardId = atom({
   key: "cardId",
-  default: 3,
+  default: 24,
 });
 export default () => {
   const [state, setState] = useRecoilState(trello);

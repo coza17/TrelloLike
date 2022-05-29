@@ -1,4 +1,4 @@
-Unable to find draggable with id: 0
+ok Unable to find draggable with id: 0
 关闭 React.StrictMode
 
 拓展运算符只深拷贝一维数组
@@ -31,8 +31,12 @@ ok列表拖拽
 flex 列方向 不设置高度超出 设置固定高度不超出？？
     src\pages\Trello\index.module.less
 ok添加列表
-添加卡片
+ok添加卡片
 添加样式优化
+ok修改卡片
 删除卡片
-卡片内容
+删除列表
+
+卡片详情内容
+    state
 新板块
