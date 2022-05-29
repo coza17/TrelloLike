@@ -6,9 +6,6 @@ export default ()=>{
     const {listIdState,setListIdState,setState,state}=store()
     const [editState,setEditState]=useState(false)
     const [inputState,setInputState]=useState("")
-    const handleEdit=()=>{
-        setEditState(state=>!state)
-    }
     const handleAdd=()=>{
         const newList=[...state]
         newList.push({
@@ -31,10 +28,10 @@ export default ()=>{
                     <div>
                         <Input value={inputState} onChange={e=>setInputState(e.target.value)}/>
                         <Button onClick={handleAdd}>添加列表</Button>
-                        <Button onClick={handleEdit}>X</Button>
+                        <Button onClick={()=>setEditState(false)}>X</Button>
                     </div>
                     :
-                    <div onClick={handleEdit}>add list</div>
+                    <div onClick={()=>setEditState(true)}>add list</div>
                 }
                 </div>
             </div>

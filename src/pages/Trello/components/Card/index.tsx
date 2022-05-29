@@ -23,7 +23,7 @@ export default (props: cardType) => {
             onClick={handleClick}
           >
             <div>
-              {id}+{text}
+              {text}
             </div>
           </div>
         );

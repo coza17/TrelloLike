@@ -9,9 +9,9 @@ export default ()=>{
     const [inputState,setInputState]=useState("")
     const {state,setState}=store()
     const handleClose=()=>{
-        const newState={...modalState}
-        newState.show=false
-        setModalState(newState)
+        const newModal={...modalState}
+        newModal.show=false
+        setModalState(newModal)
     }
     const handleClick=()=>{
         const newState=JSON.parse(JSON.stringify(state))
@@ -23,6 +23,26 @@ export default ()=>{
             })
         })
         setState(newState)
+        console.log(newState);
+        
+    }
+    const handleDelete=()=>{
+        const newState=JSON.parse(JSON.stringify(state))
+        newState.forEach((listItem:any)=>{
+            listItem.cards.forEach((cardItem: { id: string; text: string; },index:number)=>{
+                if(cardItem.id===modalState.card.id){
+                    listItem.cards.splice(index,1)
+                }
+            })
+        })
+        setState(newState)
+        setModalState({
+            show:false,
+            card:{
+                id:"",
+                text:""
+            }
+        })
     }
     useEffect(()=>{
         setInputState(modalState.card.text)
@@ -33,6 +53,7 @@ export default ()=>{
             {modalState.card.text}
             <Input value={inputState} onChange={(e)=>setInputState(e.target.value)}/>
             <Button onClick={handleClick}>修改</Button>
+            <Button onClick={handleDelete}>删除</Button>
         </div>
     )
 }

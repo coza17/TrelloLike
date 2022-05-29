@@ -24,8 +24,10 @@ export default (props:{listId:number})=>{
                 setEditState(false)
             }
         })
-        console.log(state);
-        
+    }
+    const handleCancel=()=>{
+        setInputState("")
+        setEditState(false)
     }
     return(
         <>
@@ -36,7 +38,7 @@ export default (props:{listId:number})=>{
                     <div>
                         <Input onChange={e=>setInputState(e.target.value)}/>
                         <Button onClick={handleAdd}>添加卡片</Button>
-                        <Button>X</Button>
+                        <Button onClick={handleCancel}>X</Button>
                     </div>
                     :
                     <div onClick={handleEdit}>add card</div>

@@ -1,9 +1,20 @@
+import store from "@/models/store";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import AddCard from "../AddCard";
 import Card from "../Card";
 import styles from "./index.module.less";
 export default (props: cardList) => {
   const { id, title, cards, index } = props;
+  const {state,setState}=store()
+  const handleDelete=()=>{
+    const newState=JSON.parse(JSON.stringify(state))
+    newState.forEach((listItem:any,index:number)=>{
+      if(listItem.id===id){
+        newState.splice(index,1)
+      }
+    })
+    setState(newState)
+  }
   return (
     <Draggable draggableId={id.toString()} index={index}>
       {(dragProvided) => {
@@ -19,6 +30,7 @@ export default (props: cardList) => {
                   <div className={`${styles.body}`}>
                     <div className={styles.content}>
                       <div className={styles.title} {...dragProvided.dragHandleProps}>{title}</div>
+                      <div onClick={handleDelete}>删除</div>
                       <div
                         className={styles.center}
                         {...provided.droppableProps}
