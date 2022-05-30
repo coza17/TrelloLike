@@ -1,40 +1,63 @@
-import store from "@/models/store"
-import { Button, Input } from "antd"
-import {  useState } from "react"
-import styles from "./index.module.less"
-export default ()=>{
-    const {listIdState,setListIdState,setState,state}=store()
-    const [editState,setEditState]=useState(false)
-    const [inputState,setInputState]=useState("")
-    const handleAdd=()=>{
-        const newList=[...state]
-        newList.push({
-            title:inputState,
-            id:listIdState+1,
-            cards:[]
-        })
-        setState(newList)
-        setListIdState(id=>id+1)
-        setInputState("")
-        setEditState(false)
-        
+import store from "@/models/store";
+import { CloseOutlined, PlusOutlined } from "@ant-design/icons";
+import { Button, Input } from "antd";
+import { useState } from "react";
+import styles from "./index.module.less";
+export default () => {
+  const { listIdState, setListIdState, setState, state } = store();
+  const [editState, setEditState] = useState(false);
+  const [inputState, setInputState] = useState("");
+  const handleAdd = () => {
+    if (inputState === "") {
+      setEditState(false);
+      return;
     }
-    return(
-        <>
-            <div className={styles.body}>
-                <div className={styles.content}>
-                {
-                    editState?
-                    <div>
-                        <Input value={inputState} onChange={e=>setInputState(e.target.value)}/>
-                        <Button onClick={handleAdd}>添加列表</Button>
-                        <Button onClick={()=>setEditState(false)}>X</Button>
-                    </div>
-                    :
-                    <div onClick={()=>setEditState(true)}>add list</div>
-                }
+    const newList = [...state];
+    newList.push({
+      title: inputState,
+      id: listIdState + 1,
+      cards: [],
+    });
+    setState(newList);
+    setListIdState((id) => id + 1);
+    setInputState("");
+    setEditState(false);
+  };
+  const handleCancel=()=>{
+      setEditState(false)
+      setInputState("")
+  }
+  return (
+    <>
+      <div className={styles.body}>
+        <div className={styles.content}>
+          {editState ? (
+            <div className={styles.addList}>
+              <Input
+                value={inputState}
+                placeholder="输入列表标题..."
+                onChange={(e) => setInputState(e.target.value)}
+                className={styles.input}
+              />
+              <div className={styles.button}>
+                <Button onClick={handleAdd} type="primary">
+                  添加列表
+                </Button>
+                <div
+                  onClick={handleCancel}
+                  className={styles.icon}
+                >
+                  <CloseOutlined />
                 </div>
+              </div>
             </div>
-        </>
-    )
-}
+          ) : (
+            <div onClick={() => setEditState(true)} className={styles.addText}>
+              <PlusOutlined /> add list
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
+};

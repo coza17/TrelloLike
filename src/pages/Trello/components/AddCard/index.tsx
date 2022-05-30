@@ -12,6 +12,10 @@ export default (props: { listId: number }) => {
     setEditState(true);
   };
   const handleAdd = () => {
+    if(inputState===""){
+      setEditState(false);
+      return
+    }
     const newList = JSON.parse(JSON.stringify(state));
     newList.forEach(
       (item: { id: number; cards: { id: string; text: string }[] }) => {
@@ -38,7 +42,7 @@ export default (props: { listId: number }) => {
       <div className={styles.body}>
         <div className={styles.content}>
           {editState ? (
-            <div>
+            <div className={styles.addCard}>
               <Input.TextArea
                 onChange={(e) => setInputState(e.target.value)}
                 value={inputState}
@@ -49,7 +53,7 @@ export default (props: { listId: number }) => {
               />
               <div className={styles.button}>
                 <Button  onClick={handleAdd} type="primary">添加卡片</Button>
-                <span onClick={handleCancel}><CloseOutlined /></span>
+                <div onClick={handleCancel} className={styles.icon}><CloseOutlined /></div>
               </div>
             </div>
           ) : (

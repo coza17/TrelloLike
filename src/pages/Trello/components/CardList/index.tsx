@@ -1,4 +1,7 @@
 import store from "@/models/store";
+import { DashOutlined } from "@ant-design/icons";
+import { Dropdown, Menu, message, Popconfirm } from "antd";
+import { useRef } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import AddCard from "../AddCard";
 import Card from "../Card";
@@ -14,7 +17,30 @@ export default (props: cardList) => {
       }
     });
     setState(newState);
+    message.success("删除成功");
   };
+  const handle = (e: any) => {
+    console.log(e);
+  };
+  const menu = (
+    <Menu
+      items={[
+        {
+          key: "1",
+          label: (
+            <Popconfirm
+              title="Are you sure to delete this task?"
+              onConfirm={handleDelete}
+              okText="Yes"
+              cancelText="No"
+            >
+              <div className={styles.delete}>删除</div>
+            </Popconfirm>
+          ),
+        },
+      ]}
+    />
+  );
   return (
     <Draggable draggableId={id.toString()} index={index}>
       {(dragProvided) => {
@@ -30,11 +56,15 @@ export default (props: cardList) => {
                   <div className={styles.body}>
                     <div className={styles.content}>
                       <div
-                        className={styles.header}
                         {...dragProvided.dragHandleProps}
+                        className={styles.header}
                       >
-                        {title}
-                        <span onClick={handleDelete} className={styles.delete}>删除</span>
+                        <div className={styles.title}>{title}</div>
+                          <div className={styles.delete}>
+                            <Dropdown overlay={menu}>
+                              <DashOutlined />
+                            </Dropdown>
+                          </div>
                       </div>
                       <div
                         className={styles.center}
@@ -52,7 +82,8 @@ export default (props: cardList) => {
                           );
                         })}
                         {provided.placeholder}
-                      <AddCard listId={id} />
+                        <div onClick={handle}>顶部</div>
+                        <AddCard listId={id} />
                       </div>
                     </div>
                   </div>
