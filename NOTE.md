@@ -44,8 +44,19 @@ ok删除列表
 点击添加卡片时滚动条到底
 点击添加时聚焦输入框
 卡片详情内容
-    state
+    描述Description
+    时间Dates
+    清单CheckList
+        -itemText
+        -date
+        -isCheck
+    活动Activity
+        -comment(换行)
+        -time(time、updateTime)
 新板块
+代码优化
 
 背景透明 rgba
 shallowequal?
+靠右居中
+reverse

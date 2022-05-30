@@ -46,10 +46,11 @@ export default (props: { listId: number }) => {
               <Input.TextArea
                 onChange={(e) => setInputState(e.target.value)}
                 value={inputState}
-                // autoSize={true}
+                autoSize={{minRows:1}}
                 placeholder="为这张卡片输入标题..."
                 className={styles.input}
                 // bordered={false}
+                onPressEnter={handleAdd}
               />
               <div className={styles.button}>
                 <Button  onClick={handleAdd} type="primary">添加卡片</Button>

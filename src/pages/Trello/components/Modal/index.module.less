@@ -4,9 +4,20 @@
     left: 50%;
     transform: translate(-50%,-50%);
     width: 700px;
-    height: 700px;
+    min-height: 700px;
     z-index: 100;
-    background-color: rgb(161, 141, 141);
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    overflow-y: auto;
+    .close{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+    }
+    .content{
+        // background-color: #fff;
+    }
 }
 :global{
     .hidden{

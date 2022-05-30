@@ -10,6 +10,30 @@ const trello = atom({
         {
           id: "card-0",
           text: "1st card",
+          description:"描述",
+          dates:"",
+          checkId:1,
+          checkList:[
+            {
+              id:"card-0-1",
+              itemText:'清单1',
+              // date:'',
+              isCheck:false
+            }
+          ],
+          activity:[
+            {
+              comment:"评论",
+              time:"",
+              updateTime:""
+            },
+            {
+              comment:"评论2",
+              time:"",
+              updateTime:""
+            }
+          ]
+
         },
         {
           id: "card-1",
