@@ -6,34 +6,26 @@ const modal = atom({
   key: "modal",
   default: {
     show: false,
-    card: {
-      id: "",
-      text: "",
-      description: "",
-      dates: "",
-      checkId: 0,
-      checkList: [],
-      activity: [],
-    },
+    cardId:"card-0"
   },
 });
 export default () => {
   const [modalState, setModalState] = useRecoilState(modal);
-  const { state, setState } = store();
-  useEffect(() => {
-      console.log("change");
-    const newState = JSON.parse(JSON.stringify(state));
-    newState.forEach((listItem: any) => {
-      listItem.cards.forEach((cardItem: any) => {
-        if (cardItem.id === modalState.card.id) {
-          cardItem = modalState.card;
-        }
-      });
-    });
-    setState(newState);
-    console.log(state);
-    
-  }, [modalState]);
+  // const { state, setState } = store();
+  // useEffect(() => {
+    //   console.log("change");
+    // const newState = JSON.parse(JSON.stringify(state));
+    // newState.forEach((listItem: any) => {
+    //   listItem.cards.forEach((cardItem: any) => {
+    //     if (cardItem.id === modalState.card.id) {
+    //       cardItem = modalState.card;
+    //     }
+    //   });
+    // });
+    // setState(newState);
+    // console.log(state);
+  //   console.log(modalState)
+  // }, [modalState]);
   return {
     modalState,
     setModalState,

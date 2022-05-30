@@ -53,6 +53,7 @@ ok删除列表
     活动Activity
         -comment(换行)
         -time(time、updateTime)
+    -modalState不保存卡片详情，只显示状态与卡片ID？
 新板块
 代码优化
 
@@ -60,3 +61,4 @@ ok删除列表
 shallowequal?
 靠右居中
 reverse
+对象赋值？

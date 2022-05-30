@@ -18,54 +18,42 @@ export default () => {
     setModalState(newModal);
     
   };
-  const handleClick = () => {
-    const newState = JSON.parse(JSON.stringify(state));
-    newState.forEach((listItem: any) => {
-      listItem.cards.forEach((cardItem: { id: string; text: string }) => {
-        if (cardItem.id === modalState.card.id) {
-          cardItem.text = inputState;
-        }
-      });
-    });
-    setState(newState);
-    console.log(newState);
-  };
   const handleDelete = () => {
-    const newState = JSON.parse(JSON.stringify(state));
-    newState.forEach((listItem: any) => {
-      listItem.cards.forEach(
-        (cardItem: { id: string; text: string }, index: number) => {
-          if (cardItem.id === modalState.card.id) {
-            listItem.cards.splice(index, 1);
-          }
-        }
-      );
-    });
-    setState(newState);
-    setModalState({
-      show: false,
-      card: {
-        id: "",
-        text: "",
-        description: "",
-        dates: "",
-        checkList: [],
-        activity: [],
-      },
-    });
+    // const newState = JSON.parse(JSON.stringify(state));
+    // newState.forEach((listItem: any) => {
+    //   listItem.cards.forEach(
+    //     (cardItem: { id: string; text: string }, index: number) => {
+    //       if (cardItem.id === modalState.card.id) {
+    //         listItem.cards.splice(index, 1);
+    //       }
+    //     }
+    //   );
+    // });
+    // setState(newState);
+    // setModalState({
+    //   show: false,
+    //   card: {
+    //     id: "",
+    //     text: "",
+    //     description: "",
+    //     dates: "",
+    //     checkList: [],
+    //     activity: [],
+    //   },
+    // });
   };
-  useEffect(() => {
-    setInputState(modalState.card.text);
-    console.log(modalState);
-  }, [modalState]);
+  // useEffect(() => {
+  //   setInputState(modalState.card.text);
+  //   console.log(modalState);
+  // }, [modalState]);
   return (
     <div className={`${styles.body} ${modalState.show ? "" : "hidden"}`}>
       <CloseOutlined onClick={handleClose} className={styles.close}/>
       <div className={styles.content}>
         <Header/>
-        <Description/>
-        <CheckList/>
-        <Activity/>
+        {/* <Description/> */}
+        {/* <CheckList/> */}
+        {/* <Activity/> */}
       </div>
     </div>
   );

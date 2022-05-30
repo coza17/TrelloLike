@@ -1,13 +1,19 @@
 import modalStore from "@/models/modalStore";
 import store from "@/models/store";
+import { cardType } from "@/models/types";
 import { AlignLeftOutlined } from "@ant-design/icons";
 import { Input } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
-  const { state, setState } = store();
+  const { state, setState, findCard } = store();
   const { modalState } = modalStore();
+  //获取卡片信息
+  const [cardState, setCardState] = useState<cardType>();
+  useEffect(() => {
+    console.log(findCard(modalState.cardId));
+  }, [modalState]);
   const handleDescChange = () => {
     const newState = JSON.parse(JSON.stringify(state));
     newState.forEach((listItem: any) => {
