@@ -39,41 +39,41 @@ export default () => {
         });
         setState(newList);
       }
-    }else if(result.type === "list"){
+    } else if (result.type === "list") {
       // source.droppableId === destination.droppableId
       const newList = JSON.parse(JSON.stringify(state));
-            const item = newList.splice(source.index, 1);
-            newList.splice(destination.index, 0, item[0]);
-        setState(newList);
+      const item = newList.splice(source.index, 1);
+      newList.splice(destination.index, 0, item[0]);
+      setState(newList);
     }
   };
   return (
     <>
-    <div className={styles.all}>
-    <div className={styles.header}>trello like</div>
-    <DragDropContext onDragEnd={handleDragEnd}>
-      <Droppable droppableId="board" direction="horizontal" type="list">
-        {(provided) => {
-          return (
-            <>
-              <div
-                className={styles.body}
-                {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-                {state.map((item, index) => {
-                  return <CardList {...item} key={item.id} index={index} />;
-                })}
-                {provided.placeholder}
-                <AddList/>
-              </div>
-            </>
-          );
-        }}
-      </Droppable>
-      <Modal/>
-    </DragDropContext>
-    </div>
+      <div className={styles.all}>
+        <div className={styles.header}>trello like</div>
+        <DragDropContext onDragEnd={handleDragEnd}>
+          <Droppable droppableId="board" direction="horizontal" type="list">
+            {(provided) => {
+              return (
+                <>
+                  <div
+                    className={styles.body}
+                    {...provided.droppableProps}
+                    ref={provided.innerRef}
+                  >
+                    {state.map((item, index) => {
+                      return <CardList {...item} key={item.id} index={index} />;
+                    })}
+                    {provided.placeholder}
+                    <AddList />
+                  </div>
+                </>
+              );
+            }}
+          </Droppable>
+          <Modal />
+        </DragDropContext>
+      </div>
     </>
   );
 };

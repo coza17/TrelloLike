@@ -8,28 +8,34 @@ import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
-  const { state, setState, findCard } = store();
+  const { state, setState, findCard,cardUpdate } = store();
   const { modalState } = modalStore();
-  const [cardState, setCardState] = useState<cardType>();
+  const [cardState, setCardState] = useState<cardType>(findCard(modalState.cardId));
   useEffect(() => {
-    console.log(findCard(modalState.cardId));
-  }, [modalState]);
-  const handleDescChange = () => {
-    // const newState = JSON.parse(JSON.stringify(state));
-    // newState.forEach((listItem: any) => {
-    //   listItem.cards.forEach((cardItem: any) => {
-    //     if (cardItem.id === modalState.card.id) {
-    //       cardItem.activity.push({
-    //           comment:inputState,
-    //           time:moment().format('YYYY-MM-DD HH:mm:ss')
-    //       })
-    //     }
-    //   });
-    // });
-    // setState(newState);
-    // setInputState("")
-    // console.log(newState);
+    setCardState(findCard(modalState.cardId));
+  }, [modalState,state]);
+  useEffect(()=>{
+    setInputState("")
+  },[modalState])
+  const handleActivityChange = () => {
+    const newCard={...cardState};
+    const newList=[...newCard.activity];
+    if(inputState!==""){
+      newList.unshift({
+        comment: inputState,
+        time: moment().format('YYYY-MM-DD HH:mm:ss')
+      });
+      newCard.activity=newList;
+      cardUpdate(newCard,"activity")
+      setInputState("")
+    }
   };
+  const handleDelete=(index:number)=>{
+    console.log(index);
+    const newCard:cardType=JSON.parse(JSON.stringify(cardState))
+    newCard.activity.splice(index,1)
+    cardUpdate(newCard,"activity")
+  }
   return (
     <div className={styles.body}>
       <div className={styles.title}>
@@ -45,20 +51,21 @@ export default () => {
         <Button
           type="primary"
           className={styles.button}
-          onClick={handleDescChange}
+          onClick={handleActivityChange}
         >
           保存
         </Button>
       </div>
       <div className={styles.commentList}>
-        {/* {[...cardState.activity].reverse().map((item: any, index) => {
+        {cardState.activity.map((item: any, index) => {
           return (
             <div className={styles.commentItem} key={index}>
               <span className={styles.commentTime}>2022/05/31 00:33</span>
               <div className={styles.commentText}>{item.comment}</div>
+              <span onClick={()=>handleDelete(index)}>删除</span>
             </div>
           );
-        })} */}
+        })}
       </div>
     </div>
   );

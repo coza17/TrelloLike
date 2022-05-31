@@ -1,5 +1,5 @@
 ok Unable to find draggable with id: 0
-关闭 React.StrictMode
+    关闭 React.StrictMode
 
 拓展运算符只深拷贝一维数组
 
@@ -28,7 +28,7 @@ ok列表拖拽
     设置方向
     The direction in which items flow in this droppable. Options are 
     vertical (default) and horizontal 水平.
-flex 列方向 不设置高度超出 设置固定高度不超出？？
+?flex 列方向 不设置高度超出 设置固定高度不超出？？
     src\pages\Trello\index.module.less
 ok添加列表
 ok添加卡片
@@ -54,11 +54,25 @@ ok删除列表
         -comment(换行)
         -time(time、updateTime)
     -modalState不保存卡片详情，只显示状态与卡片ID？
+到期时间、卡片样式
+清单拖拽、删除清单、评论
+卡片异步显示
 新板块
 代码优化
 
 背景透明 rgba
 shallowequal?
 靠右居中
-reverse
-对象赋值？
+reverse、unshift
+对象赋值另一个对象不行?
+
+
+?object is not extensible
+https://cloud.tencent.com/developer/ask/sof/299829
+    const newList=[...newCard.checkList]
+    newList.push({
+      id: `${newCard.id}-${newCard.checkId + 1}`,
+      itemText: inputState,
+      isCheck: false,
+    });
+    newCard.checkList=newList;

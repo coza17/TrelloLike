@@ -19,9 +19,6 @@ export default (props: cardList) => {
     setState(newState);
     message.success("删除成功");
   };
-  const handle = (e: any) => {
-    console.log(e);
-  };
   const menu = (
     <Menu
       items={[
@@ -82,7 +79,6 @@ export default (props: cardList) => {
                           );
                         })}
                         {provided.placeholder}
-                        <div onClick={handle}>顶部</div>
                         <AddCard listId={id} />
                       </div>
                     </div>

@@ -7,24 +7,20 @@ import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
-  const { state, setState, findCard } = store();
+  const { state, setState, findCard,cardUpdate } = store();
   const { modalState } = modalStore();
   //获取卡片信息
-  const [cardState, setCardState] = useState<cardType>();
+  const [cardState, setCardState] = useState<cardType>(findCard(modalState.cardId));
   useEffect(() => {
-    console.log(findCard(modalState.cardId));
-  }, [modalState]);
+    setCardState(findCard(modalState.cardId));
+  }, [modalState,state]);
+  useEffect(()=>{
+    setInputState(cardState.description)
+  },[cardState])
   const handleDescChange = () => {
-    const newState = JSON.parse(JSON.stringify(state));
-    newState.forEach((listItem: any) => {
-      listItem.cards.forEach((cardItem: any) => {
-        if (cardItem.id === modalState.card.id) {
-          cardItem.description = inputState;
-        }
-      });
-    });
-    setState(newState);
-    console.log(newState);
+    const newCard={...cardState}
+    newCard.description=inputState
+    cardUpdate(newCard,"description")
   };
   return (
     <div className={styles.body}>
