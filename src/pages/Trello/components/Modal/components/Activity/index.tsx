@@ -62,7 +62,7 @@ export default () => {
             <div className={styles.commentItem} key={index}>
               <span className={styles.commentTime}>{item.time}</span>
               <div className={styles.commentText}>{item.comment}</div>
-              <a onClick={()=>handleDelete(index)} className={styles.delete}>删除</a>
+              
             </div>
           );
         })}

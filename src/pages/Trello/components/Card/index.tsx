@@ -7,6 +7,7 @@ import {
   MessageOutlined,
   OrderedListOutlined,
 } from "@ant-design/icons";
+import moment from "moment";
 import { Draggable } from "react-beautiful-dnd";
 import styles from "./index.module.less";
 
@@ -22,6 +23,7 @@ export default (props: cardType) => {
   } = props;
   const { setModalState } = modalStore();
   const handleClick = () => {
+    //点击卡片弹窗
     setModalState({
       show: true,
       cardId: id,
@@ -40,14 +42,23 @@ export default (props: cardType) => {
           >
             <div>{text}</div>
             <div className={styles.footer}>
+              {/* 根据卡片相关信息显示 */}
               {dates.time && (
+                // 到期日是否完成
                 <div className={`${styles.icon} ${styles.time}`}>
-                  <div className={!dates.isCheck?`${styles.check}`:`${styles.checked}`}>
-                  </div>
+                  {/* <div className={!dates.isCheck?`${styles.check}`:`${styles.checked}`}> */}
+                  {/* <div className={moment(new Date()).isBefore(moment(dates.time))?`${styles.out}`:(!dates.isCheck?`${styles.check}`:`${styles.checked}`)}> */}
+                  {/* </div> */}
                   {dates.isCheck ? (
-                    <ClockCircleFilled className={styles.checked} />
+                    <div className={styles.checked} >
+                      <ClockCircleOutlined className={styles.timeIcon}/>
+                      {moment(dates.time).format("YY-MM-DD")}
+                    </div>
                   ) : (
-                    <ClockCircleFilled className={styles.check} />
+                    <div className={!moment(new Date()).isBefore(moment(dates.time))?`${styles.out}`:`${styles.check}`}>
+                    <ClockCircleOutlined className={styles.timeIcon}/>
+                    {moment(dates.time).format("YY-MM-DD")}
+                    </div>
                   )}
                 </div>
               )}

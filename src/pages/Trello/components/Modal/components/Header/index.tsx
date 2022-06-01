@@ -12,24 +12,23 @@ import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
-  const { state, setState, findCard, cardUpdate } = store();
-  const { modalState,cardState } = modalStore();
-  //获取卡片信息
-  // const [cardState, setCardState] = useState<cardType>(
-  //   findCard(modalState.cardId)
-  // );
-  // useEffect(() => {
-  //   setCardState(findCard(modalState.cardId));
-  // }, [modalState, state]);
+  const { state, setState, findCard, cardUpdate,cardDelete } = store();
+  const { modalState,setModalState,cardState } = modalStore();
 
   useEffect(() => {
     setInputState(cardState.text);
   }, [cardState]);
-
+  const handleDelete=()=>{
+    cardDelete(cardState.id)
+    const newModal={...modalState}
+    newModal.show=false
+    setModalState(newModal)
+  }
   const handleTextChange = () => {
     const newCard = { ...cardState };
     newCard.text = inputState;
     cardUpdate(newCard, "text");
+    // console.log("时间",moment(new Date()).isBefore(moment(cardState.dates.time)))
   };
   const handleDatesChange=(action:"time"|"check",data?:moment.Moment | null)=>{
     // console.log("data",data.toString());
@@ -59,6 +58,7 @@ export default () => {
           onBlur={handleTextChange}
         />
       </div>
+        <a onClick={handleDelete} className={styles.delete}>删除卡片</a>
       <div className={styles.time}>
         <div className={styles.text}>到期日</div>
         {cardState.dates.time!==null && (cardState.dates.isCheck ? (

@@ -11,6 +11,8 @@
     word-wrap:break-word; 
 
     .footer{
+        word-break:break-all;
+        word-wrap:break-word; 
         display: flex;
         .icon{
             margin-right: 10px;
@@ -19,11 +21,26 @@
             margin-right: 0px;
         }
         .time{
+            .timeIcon{
+                margin-right: 6px;
+            }
+            .out{
+                padding: 0px 3px;
+                border-radius: 3px;
+                background-color: red;
+                color: white;
+            }
             .checked{
-                color: #61bd4f;
+                padding: 0px 3px;
+                border-radius: 3px;
+                background-color: #61bd4f;
+                color: white;
             }
             .check{
-                color: #f2d600;
+                padding: 0px 3px;
+                border-radius: 3px;
+                background-color: #f2d600;
+                color: white;
             }
         }
         .description{

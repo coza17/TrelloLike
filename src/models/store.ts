@@ -1,5 +1,5 @@
 import { atom, useRecoilState } from "recoil";
-import { cardEmpty, cardListType, cardType } from "./types";
+import { cardEmpty, cardListType, cardType, trelloType } from "./types";
 
 const trello = atom({
   key: "treloState",
@@ -13,8 +13,8 @@ const trello = atom({
           text: "1st card",
           description: "描述",
           dates: {
-            time:"Thu Jun 30 2022 22:06:30 GMT+0800",
-            isCheck:false
+            time: "Thu Jun 30 2022 22:06:30 GMT+0800",
+            isCheck: false,
           },
           checkId: 1,
           checkList: [
@@ -36,17 +36,47 @@ const trello = atom({
             },
           ],
         },
+        {
+          id: "card-1",
+          text: "2 card",
+          description: "",
+          dates: {
+            time: null,
+            isCheck: false,
+          },
+          checkId: 0,
+          checkList: [],
+          activity: [],
+        },
+      ],
+    },
+    {
+      title: "办理",
+      id: 1,
+      cards: [
+        {
+          id: "card-2",
+          text: "3 card",
+          description: "",
+          dates: {
+            time: null,
+            isCheck: false,
+          },
+          checkId: 0,
+          checkList: [],
+          activity: [],
+        },
       ],
     },
   ],
 });
 const listId = atom({
   key: "list-id",
-  default: 0,
+  default: 1,
 });
 const cardId = atom({
   key: "card-id",
-  default: 0,
+  default: 2,
 });
 export default () => {
   const [state, setState] = useRecoilState(trello);
@@ -54,79 +84,92 @@ export default () => {
   const [cardIdState, setCardIdState] = useRecoilState(cardId);
 
   const findCard = (cardId: string) => {
+    //根据cardId查找卡片
     let card: cardType = cardEmpty;
     state.forEach((item) => {
       if (item.cards.find((cardItem) => cardItem.id === cardId)) {
-        card =
-          item.cards.find((cardItem) => cardItem.id === cardId) || cardEmpty;
+      card = item.cards.find((cardItem) => cardItem.id === cardId) || cardEmpty;
       }
     });
     return card;
   };
 
-  const cardUpdate = (cardState: cardType, action: any) => {
+  const cardUpdate = (
+    cardState: cardType,
+    action: "text" | "description" | "checkList" | "activity" | "dates"
+  ) => {
+    //更新卡片信息
     const newState = JSON.parse(JSON.stringify(state));
     newState.forEach((listItem: cardListType) => {
       listItem.cards.forEach((cardItem: cardType) => {
         if (cardItem.id === cardState.id) {
           switch (action) {
             case "text": {
+              //标题
               cardItem.text = cardState.text;
-              // cardItem=JSON.parse(JSON.stringify(cardState))
               break;
             }
             case "description": {
+              //描述
               cardItem.description = cardState.description;
               break;
             }
             case "checkList": {
+              //清单
               cardItem.checkList = cardState.checkList;
               cardItem.checkId = cardState.checkId;
               break;
             }
             case "activity": {
-              
+              //评论
               cardItem.activity = cardState.activity;
               break;
             }
-            case "dates":{
-              cardItem.dates=cardState.dates;
-              console.log(cardState);
-              
+            case "dates": {
+              //日期
+              cardItem.dates = cardState.dates;
               break;
             }
           }
         }
       });
     });
-    console.log(newState);
     setState(newState);
   };
 
-  const cardAdd = (listId:number,text:string) => {
+  const cardAdd = (listId: number, text: string) => {
+    //增加新卡片
     const newState = JSON.parse(JSON.stringify(state));
-    newState.forEach(
-      (item: cardListType) => {
-        if (item.id === listId) {
-          item.cards.push({
-            id: `card-${cardIdState + 1}`,
-            text: text,
-            description: "",
-            dates: {
-              time: null,
-              isCheck: false
-            },
-            checkId: 0,
-            checkList: [],
-            activity: []
-          });
-          setCardIdState((id) => id + 1);
-          setState(newState);
-        }
+    newState.forEach((item: cardListType) => {
+      if (item.id === listId) {
+        item.cards.push({
+          id: `card-${cardIdState + 1}`,
+          text: text,
+          description: "",
+          dates: {
+            time: null,
+            isCheck: false,
+          },
+          checkId: 0,
+          checkList: [],
+          activity: [],
+        });
+        setCardIdState((id) => id + 1);
+        setState(newState);
       }
-    );
+    });
   };
-
+  const cardDelete = (cardId: string) => {
+    const newState=JSON.parse(JSON.stringify(state))
+    newState.forEach((listItem:cardListType) => {
+      listItem.cards.forEach((cardItem,index)=>{
+        if(cardItem.id===cardId){
+          listItem.cards.splice(index,1)
+        }
+      })
+    });
+    setState(newState)
+  };
   return {
     state,
     setState,
@@ -137,6 +180,7 @@ export default () => {
 
     findCard,
     cardUpdate,
-    cardAdd
+    cardAdd,
+    cardDelete
   };
 };

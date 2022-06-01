@@ -8,9 +8,10 @@ import AddCard from "../AddCard";
 import Card from "../Card";
 import styles from "./index.module.less";
 export default (props: cardListType) => {
-  const { id, title, cards, index } = props;
+  const { id, title, cards, index=0 } = props;
   const { state, setState } = store();
   const handleDelete = () => {
+    //删除列表
     const newState = JSON.parse(JSON.stringify(state));
     newState.forEach((listItem: any, index: number) => {
       if (listItem.id === id) {
@@ -27,10 +28,10 @@ export default (props: cardListType) => {
           key: "1",
           label: (
             <Popconfirm
-              title="Are you sure to delete this task?"
+              title="是否删除该列表?"
               onConfirm={handleDelete}
-              okText="Yes"
-              cancelText="No"
+              okText="是"
+              cancelText="否"
             >
               <div className={styles.delete}>删除</div>
             </Popconfirm>
@@ -43,11 +44,7 @@ export default (props: cardListType) => {
     <Draggable draggableId={id.toString()} index={index}>
       {(dragProvided) => {
         return (
-          <div
-            ref={dragProvided.innerRef}
-            {...dragProvided.draggableProps}
-            // className="list"
-          >
+          <div ref={dragProvided.innerRef} {...dragProvided.draggableProps}>
             <Droppable droppableId={id.toString()} type="card">
               {(provided) => {
                 return (
@@ -58,11 +55,11 @@ export default (props: cardListType) => {
                         className={styles.header}
                       >
                         <div className={styles.title}>{title}</div>
+                        <Dropdown overlay={menu}>
                           <div className={styles.delete}>
-                            <Dropdown overlay={menu}>
-                              <DashOutlined />
-                            </Dropdown>
+                            <DashOutlined />
                           </div>
+                        </Dropdown>
                       </div>
                       <div
                         className={styles.center}
@@ -93,4 +90,3 @@ export default (props: cardListType) => {
     </Draggable>
   );
 };
-

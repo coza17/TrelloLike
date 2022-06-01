@@ -24,7 +24,7 @@ export type cardType = {
 export type cardListType = {
   title: string;
   id: number;
-  index:number;
+  index?:number;
   cards: cardType[];
 };
 export type trelloType = cardListType[];

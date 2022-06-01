@@ -65,27 +65,14 @@ export default () => {
           )}
         />}
       </div>
-      <div className={styles.content}>
+      <div className={styles.content} >
+        <div>
         {cardState.checkList.map((item: checkType, index) => {
           return (
             <CheckItem {...item} key={item.id}/>
-            // <div className={styles.checkItem} key={item.id}>
-            //   {item.isCheck ? (
-            //     <CheckSquareOutlined
-            //       onClick={() => handleCheck(item.id)}
-            //       className={styles.checkedIcon}
-            //     />
-            //   ) : (
-            //     <BorderOutlined
-            //       onClick={() => handleCheck(item.id)}
-            //       className={styles.checkIcon}
-            //     />
-            //   )}
-            //   <div key={index} className={styles.itemText}>{item.itemText}</div>
-            //   <a onClick={() => handleDelete(item.id)} className={styles.delete}>删除</a>
-            // </div>
           );
         })}
+        </div>
         <div className={styles.add}>
           {showState ? (
             <div className={styles.addItem}>
