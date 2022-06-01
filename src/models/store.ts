@@ -159,7 +159,9 @@ export default () => {
       }
     });
   };
+
   const cardDelete = (cardId: string) => {
+    //删除卡片
     const newState=JSON.parse(JSON.stringify(state))
     newState.forEach((listItem:cardListType) => {
       listItem.cards.forEach((cardItem,index)=>{
@@ -170,6 +172,30 @@ export default () => {
     });
     setState(newState)
   };
+
+  const listAdd = (title:string) => {
+    //增加新列表
+    const newList = [...state];
+    newList.push({
+      title: title,
+      id: listIdState + 1,
+      cards: [],
+    });
+    setState(newList);
+    setListIdState((id) => id + 1);
+  };
+  
+  const listDelete = (id:number) => {
+    //删除列表
+    const newState = JSON.parse(JSON.stringify(state));
+    newState.forEach((listItem: any, index: number) => {
+      if (listItem.id === id) {
+        newState.splice(index, 1);
+      }
+    });
+    setState(newState);
+  };
+
   return {
     state,
     setState,
@@ -181,6 +207,8 @@ export default () => {
     findCard,
     cardUpdate,
     cardAdd,
-    cardDelete
+    cardDelete,
+    listAdd,
+    listDelete
   };
 };

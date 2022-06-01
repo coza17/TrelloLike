@@ -4,29 +4,24 @@ import { Button, Input } from "antd";
 import { useState } from "react";
 import styles from "./index.module.less";
 export default () => {
-  const { listIdState, setListIdState, setState, state } = store();
+  const { listAdd } = store();
   const [editState, setEditState] = useState(false);
   const [inputState, setInputState] = useState("");
   const handleAdd = () => {
+    //增加新列表
     if (inputState === "") {
       setEditState(false);
       return;
     }
-    const newList = [...state];
-    newList.push({
-      title: inputState,
-      id: listIdState + 1,
-      cards: [],
-    });
-    setState(newList);
-    setListIdState((id) => id + 1);
+
+    listAdd(inputState);
     setInputState("");
     setEditState(false);
   };
-  const handleCancel=()=>{
-      setEditState(false)
-      setInputState("")
-  }
+  const handleCancel = () => {
+    setEditState(false);
+    setInputState("");
+  };
   return (
     <>
       <div className={styles.body}>
@@ -43,10 +38,7 @@ export default () => {
                 <Button onClick={handleAdd} type="primary">
                   添加列表
                 </Button>
-                <div
-                  onClick={handleCancel}
-                  className={styles.icon}
-                >
+                <div onClick={handleCancel} className={styles.icon}>
                   <CloseOutlined />
                 </div>
               </div>

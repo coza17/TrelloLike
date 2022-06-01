@@ -2,27 +2,20 @@ import modalStore from "@/models/modalStore";
 import store from "@/models/store";
 import { cardType, checkType } from "@/models/types";
 import {
-  BorderOutlined,
-  CheckSquareOutlined,
   OrderedListOutlined,
 } from "@ant-design/icons";
 import { Button, Input, Progress } from "antd";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import CheckItem from "./CheckItem";
 import styles from "./index.module.less";
 export default () => {
-  const { state, setState, findCard, cardUpdate } = store();
-  const { modalState ,cardState} = modalStore();
+  const { cardUpdate } = store();
+  const { cardState} = modalStore();
   const [inputState, setInputState] = useState("");
   const [showState, setShowState] = useState(false);
-  //获取卡片信息
-  // const [cardState, setCardState] = useState<cardType>(
-  //   findCard(modalState.cardId)
-  // );
-  // useEffect(() => {
-  //   setCardState(findCard(modalState.cardId));
-  // }, [modalState, state]);
+
   const handleAdd = () => {
+    //增加单项
     if (inputState !== "") {
       const newCard = { ...cardState };
       const newList = [...newCard.checkList];
@@ -37,20 +30,7 @@ export default () => {
       setInputState("");
     }
   };
-  const handleCheck = (id: string) => {
-    const newCard: cardType = JSON.parse(JSON.stringify(cardState));
-    newCard.checkList.forEach((item) => {
-      if (item.id === id) {
-        item.isCheck = !item.isCheck;
-      }
-    });
-    cardUpdate(newCard, "checkList");
-  };
-  const handleDelete = (id: string) => {
-    const newCard: cardType = JSON.parse(JSON.stringify(cardState));
-    newCard.checkList = newCard.checkList.filter((item) => item.id !== id);
-    cardUpdate(newCard, "checkList");
-  };
+
   return (
     <div className={styles.body}>
       <div className={styles.title}>

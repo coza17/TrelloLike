@@ -2,23 +2,16 @@ import store from "@/models/store";
 import { cardListType } from "@/models/types";
 import { DashOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, message, Popconfirm } from "antd";
-import { useRef } from "react";
 import { Draggable, Droppable } from "react-beautiful-dnd";
 import AddCard from "../AddCard";
 import Card from "../Card";
 import styles from "./index.module.less";
 export default (props: cardListType) => {
   const { id, title, cards, index=0 } = props;
-  const { state, setState } = store();
+  const { listDelete } = store();
   const handleDelete = () => {
     //删除列表
-    const newState = JSON.parse(JSON.stringify(state));
-    newState.forEach((listItem: any, index: number) => {
-      if (listItem.id === id) {
-        newState.splice(index, 1);
-      }
-    });
-    setState(newState);
+    listDelete(id)
     message.success("删除成功");
   };
   const menu = (

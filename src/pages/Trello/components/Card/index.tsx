@@ -2,7 +2,6 @@ import modalStore from "@/models/modalStore";
 import { cardType } from "@/models/types";
 import {
   AlignLeftOutlined,
-  ClockCircleFilled,
   ClockCircleOutlined,
   MessageOutlined,
   OrderedListOutlined,
@@ -46,9 +45,6 @@ export default (props: cardType) => {
               {dates.time && (
                 // 到期日是否完成
                 <div className={`${styles.icon} ${styles.time}`}>
-                  {/* <div className={!dates.isCheck?`${styles.check}`:`${styles.checked}`}> */}
-                  {/* <div className={moment(new Date()).isBefore(moment(dates.time))?`${styles.out}`:(!dates.isCheck?`${styles.check}`:`${styles.checked}`)}> */}
-                  {/* </div> */}
                   {dates.isCheck ? (
                     <div className={styles.checked} >
                       <ClockCircleOutlined className={styles.timeIcon}/>

@@ -1,27 +1,25 @@
 import modalStore from "@/models/modalStore";
 import store from "@/models/store";
-import { cardType } from "@/models/types";
 import { AlignLeftOutlined } from "@ant-design/icons";
 import { Input } from "antd";
 import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
-  const { state, setState, findCard,cardUpdate } = store();
-  const { modalState,cardState } = modalStore();
-  //获取卡片信息
-  // const [cardState, setCardState] = useState<cardType>(findCard(modalState.cardId));
-  // useEffect(() => {
-  //   setCardState(findCard(modalState.cardId));
-  // }, [modalState,state]);
+  const { cardUpdate } = store();
+  const { cardState } = modalStore();
+
   useEffect(()=>{
     setInputState(cardState.description)
   },[cardState])
+
   const handleDescChange = () => {
+    //更新卡片详情
     const newCard={...cardState}
     newCard.description=inputState
     cardUpdate(newCard,"description")
   };
+
   return (
     <div className={styles.body}>
       <div className={styles.title}>

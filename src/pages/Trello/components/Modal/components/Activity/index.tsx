@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
-  const { state, setState, findCard,cardUpdate } = store();
+  const { state, findCard,cardUpdate } = store();
   const { modalState } = modalStore();
   const [cardState, setCardState] = useState<cardType>(findCard(modalState.cardId));
   useEffect(() => {
@@ -62,7 +62,7 @@ export default () => {
             <div className={styles.commentItem} key={index}>
               <span className={styles.commentTime}>{item.time}</span>
               <div className={styles.commentText}>{item.comment}</div>
-              
+              <a onClick={()=>handleDelete(index)} className={styles.delete}>删除</a>
             </div>
           );
         })}

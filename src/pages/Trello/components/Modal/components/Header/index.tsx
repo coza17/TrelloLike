@@ -12,27 +12,30 @@ import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
-  const { state, setState, findCard, cardUpdate,cardDelete } = store();
+  const { cardUpdate,cardDelete } = store();
   const { modalState,setModalState,cardState } = modalStore();
 
   useEffect(() => {
     setInputState(cardState.text);
   }, [cardState]);
+
   const handleDelete=()=>{
+    //删除卡片
     cardDelete(cardState.id)
     const newModal={...modalState}
     newModal.show=false
     setModalState(newModal)
   }
+
   const handleTextChange = () => {
+    //更新卡片标题
     const newCard = { ...cardState };
     newCard.text = inputState;
     cardUpdate(newCard, "text");
-    // console.log("时间",moment(new Date()).isBefore(moment(cardState.dates.time)))
   };
+
   const handleDatesChange=(action:"time"|"check",data?:moment.Moment | null)=>{
-    // console.log("data",data.toString());
-    // console.log("change",moment(new Date (cardState.dates.time).getTime()).format("YYYY-MM-DD HH:mm"));
+    //更新卡片日期
     const newCard:cardType=JSON.parse(JSON.stringify(cardState));
     switch (action){
       case "time":{
@@ -46,6 +49,7 @@ export default () => {
     }
     cardUpdate(newCard,"dates")
   }
+  
   return (
     <div className={styles.body}>
       <div className={styles.title}>
@@ -71,7 +75,6 @@ export default () => {
           showToday={false}
           allowClear={true}
           value={cardState.dates.time?moment(new Date (cardState.dates.time).getTime()):null}
-          // defaultValue={moment(new Date (cardState.dates.time).getTime())}
           onChange={(data) => handleDatesChange("time",data)}
         />
       </div>
