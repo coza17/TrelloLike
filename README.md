@@ -1,7 +1,23 @@
 # TrelloLike
 
 ## 技术栈
-React + TypeScript + Vite
+React + TypeScript + Recoil + Vite
+
+## 项目目录
+- models
+    全局状态(trello状态、弹窗状态)
+- pages
+    项目页面
+    AddCard 增加卡片
+    AddList 增加列表
+    Card 卡片
+    CardList 列表
+    Modal 弹窗
+        - Activity 活动
+        - CheckList 清单
+        - Description 描述
+        - Header 标题、日期
+
 
 ## 界面和功能展示
 
