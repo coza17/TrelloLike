@@ -13,14 +13,14 @@ import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
   const { state, setState, findCard, cardUpdate } = store();
-  const { modalState } = modalStore();
+  const { modalState,cardState } = modalStore();
   //获取卡片信息
-  const [cardState, setCardState] = useState<cardType>(
-    findCard(modalState.cardId)
-  );
-  useEffect(() => {
-    setCardState(findCard(modalState.cardId));
-  }, [modalState, state]);
+  // const [cardState, setCardState] = useState<cardType>(
+  //   findCard(modalState.cardId)
+  // );
+  // useEffect(() => {
+  //   setCardState(findCard(modalState.cardId));
+  // }, [modalState, state]);
 
   useEffect(() => {
     setInputState(cardState.text);

@@ -9,6 +9,7 @@ export type activityType = {
   time: string;
 }[];
 export type cardType = {
+  index?:number;
   id: string;
   text: string;
   description: string;
@@ -23,6 +24,7 @@ export type cardType = {
 export type cardListType = {
   title: string;
   id: number;
+  index:number;
   cards: cardType[];
 };
 export type trelloType = cardListType[];
@@ -30,7 +32,7 @@ export type modalType={
   show:false,
   cardId:string
 }
-export const cardEmpty={
+export const cardEmpty:cardType={
   id: "",
   text: "",
   description: "",

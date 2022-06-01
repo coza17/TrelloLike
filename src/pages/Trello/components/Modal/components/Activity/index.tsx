@@ -60,9 +60,9 @@ export default () => {
         {cardState.activity.map((item: any, index) => {
           return (
             <div className={styles.commentItem} key={index}>
-              <span className={styles.commentTime}>2022/05/31 00:33</span>
+              <span className={styles.commentTime}>{item.time}</span>
               <div className={styles.commentText}>{item.comment}</div>
-              <span onClick={()=>handleDelete(index)}>删除</span>
+              <a onClick={()=>handleDelete(index)} className={styles.delete}>删除</a>
             </div>
           );
         })}

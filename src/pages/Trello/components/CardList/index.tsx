@@ -1,4 +1,5 @@
 import store from "@/models/store";
+import { cardListType } from "@/models/types";
 import { DashOutlined } from "@ant-design/icons";
 import { Dropdown, Menu, message, Popconfirm } from "antd";
 import { useRef } from "react";
@@ -6,7 +7,7 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import AddCard from "../AddCard";
 import Card from "../Card";
 import styles from "./index.module.less";
-export default (props: cardList) => {
+export default (props: cardListType) => {
   const { id, title, cards, index } = props;
   const { state, setState } = store();
   const handleDelete = () => {
@@ -93,12 +94,3 @@ export default (props: cardList) => {
   );
 };
 
-type cardList = {
-  id: number;
-  title: string;
-  index: number;
-  cards: {
-    id: string;
-    text: string;
-  }[];
-};

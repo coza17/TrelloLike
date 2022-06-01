@@ -27,12 +27,12 @@ const trello = atom({
           ],
           activity: [
             {
-              comment: "评论",
-              time: "",
+              comment: "评论2",
+              time: "2022-05-30 03:25:17",
             },
             {
-              comment: "评论2",
-              time: "",
+              comment: "评论1",
+              time: "2022-05-29 17:25:17",
             },
           ],
         },

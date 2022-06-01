@@ -40,6 +40,7 @@ export default () => {
   };
   return (
     <div className={`${styles.all} ${modalState.show ? "" : "hidden"}`}>
+      <div onClick={handleClose} className={styles.mask}></div>
     <div className={`${styles.body}`}>
       <CloseOutlined onClick={handleClose} className={styles.close} />
       <div className={styles.content}>
