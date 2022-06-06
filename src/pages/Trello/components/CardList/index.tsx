@@ -6,14 +6,8 @@ import { Draggable, Droppable } from "react-beautiful-dnd";
 import AddCard from "../AddCard";
 import Card from "../Card";
 import styles from "./index.module.less";
-export default (props: cardListType) => {
-  const { id, title, cards, index=0 } = props;
-  const { listDelete } = store();
-  const handleDelete = () => {
-    //删除列表
-    listDelete(id)
-    message.success("删除成功");
-  };
+export default (props: cardListType&{index:number;handleDelete:()=>void;cardClick:(id:any)=>void}) => {
+  const { id, title, cards, index ,handleDelete,cardClick} = props;
   const menu = (
     <Menu
       items={[
@@ -66,6 +60,7 @@ export default (props: cardListType) => {
                               key={item.id}
                               index={index}
                               id={item.id}
+                              handleClick={cardClick}
                             />
                           );
                         })}

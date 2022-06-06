@@ -1,4 +1,5 @@
 import store from "@/models/store";
+import { cardListType } from "@/models/types";
 
 const useDragEnd =()=>{
     const { state, setState } = store();
@@ -13,7 +14,7 @@ const useDragEnd =()=>{
         if (source.droppableId === destination.droppableId) {
           //同列表
           const newList = JSON.parse(JSON.stringify(state));
-          newList.forEach((listItem: any) => {
+          newList.forEach((listItem: cardListType) => {
             if (listItem.id.toString() === destination.droppableId) {
               const item = listItem.cards.splice(source.index, 1);
               listItem.cards.splice(destination.index, 0, item[0]);
@@ -23,11 +24,11 @@ const useDragEnd =()=>{
         } else if (source.droppableId !== destination.droppableId) {
           //跨列表
           const newList = JSON.parse(JSON.stringify(state));
-          newList.forEach((listItem: any) => {
+          newList.forEach((listItem: cardListType) => {
             if (listItem.id.toString() === source.droppableId) {
               //删除、保存
               const item = listItem.cards.splice(source.index, 1);
-              newList.forEach((nList: any) => {
+              newList.forEach((nList: cardListType) => {
                 if (nList.id.toString() === destination.droppableId) {
                   //添加
                   nList.cards.splice(destination.index, 0, item[0]);

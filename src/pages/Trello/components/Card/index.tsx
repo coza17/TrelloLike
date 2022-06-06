@@ -10,24 +10,18 @@ import moment from "moment";
 import { Draggable } from "react-beautiful-dnd";
 import styles from "./index.module.less";
 
-export default (props: cardType) => {
+export default (props: cardType&{index:number;handleClick:(id:any)=>void}) => {
   const {
     id,
     text,
-    index = 0,
+    index,
     dates,
     checkList,
     activity,
     description,
+    handleClick
   } = props;
-  const { setModalState } = modalStore();
-  const handleClick = () => {
-    //点击卡片弹窗
-    setModalState({
-      show: true,
-      cardId: id,
-    });
-  };
+
   return (
     <Draggable draggableId={id.toString()} index={index}>
       {(provided) => {
@@ -37,7 +31,7 @@ export default (props: cardType) => {
             {...provided.draggableProps}
             {...provided.dragHandleProps}
             className={styles.body}
-            onClick={handleClick}
+            onClick={()=>handleClick(id)}
           >
             <div>{text}</div>
             <div className={styles.footer}>

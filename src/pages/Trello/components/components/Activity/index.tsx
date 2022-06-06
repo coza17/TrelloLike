@@ -1,6 +1,6 @@
 import modalStore from "@/models/modalStore";
 import store from "@/models/store";
-import { cardType } from "@/models/types";
+import { activityType, cardType } from "@/models/types";
 import { UnorderedListOutlined } from "@ant-design/icons";
 import { Button, Input } from "antd";
 import moment from "moment";
@@ -8,12 +8,8 @@ import { useEffect, useState } from "react";
 import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
-  const { state, findCard,cardUpdate } = store();
-  const { modalState } = modalStore();
-  const [cardState, setCardState] = useState<cardType>(findCard(modalState.cardId));
-  useEffect(() => {
-    setCardState(findCard(modalState.cardId));
-  }, [modalState,state]);
+  const { cardUpdate } = store();
+  const { modalState,cardState } = modalStore();
   useEffect(()=>{
     setInputState("")
   },[modalState])
@@ -57,7 +53,7 @@ export default () => {
         </Button>
       </div>
       <div className={styles.commentList}>
-        {cardState.activity.map((item: any, index) => {
+        {cardState.activity.map((item: activityType, index) => {
           return (
             <div className={styles.commentItem} key={index}>
               <span className={styles.commentTime}>{item.time}</span>

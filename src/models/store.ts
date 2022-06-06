@@ -188,7 +188,7 @@ export default () => {
   const listDelete = (id:number) => {
     //删除列表
     const newState = JSON.parse(JSON.stringify(state));
-    newState.forEach((listItem: any, index: number) => {
+    newState.forEach((listItem: cardListType, index: number) => {
       if (listItem.id === id) {
         newState.splice(index, 1);
       }
