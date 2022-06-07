@@ -20,6 +20,7 @@ export default () => {
   const [modalState, setModalState] = useRecoilState(modal);
   const [cardState, setCardState] = useRecoilState(card);
   const [cardIdState,setCardIdState]=useRecoilState(cardId)
+
   useEffect(()=>{
     setCardState(findCard(cardIdState))
   },[cardIdState,state])

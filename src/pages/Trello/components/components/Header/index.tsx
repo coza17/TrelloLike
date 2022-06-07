@@ -13,7 +13,7 @@ import styles from "./index.module.less";
 export default () => {
   const [inputState, setInputState] = useState("");
   const { cardUpdate,cardDelete } = store();
-  const { modalState,setModalState,cardState } = modalStore();
+  const { setModalState,cardState } = modalStore();
 
   useEffect(() => {
     setInputState(cardState.text);
@@ -22,9 +22,7 @@ export default () => {
   const handleDelete=()=>{
     //删除卡片
     cardDelete(cardState.id)
-    const newModal={...modalState}
-    newModal.show=false
-    setModalState(newModal)
+    setModalState(false)
   }
 
   const handleTextChange = () => {
