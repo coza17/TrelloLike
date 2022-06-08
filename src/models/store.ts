@@ -1,8 +1,9 @@
 import { atom, useRecoilState } from "recoil";
+import { recoilPersist } from "recoil-persist";
 import { cardEmpty, cardListType, cardType, trelloType } from "./types";
-
+const { persistAtom } = recoilPersist()
 const trello = atom({
-  key: "treloState",
+  key: "trelloState",
   default: [
     {
       title: "待办",
@@ -69,6 +70,7 @@ const trello = atom({
       ],
     },
   ],
+  effects_UNSTABLE: [persistAtom]
 });
 const listId = atom({
   key: "list-id",
@@ -79,7 +81,7 @@ const cardId = atom({
   default: 2,
 });
 export default () => {
-  const [state, setState] = useRecoilState(trello);
+  const [state, setState] = useRecoilState<trelloType>(trello);
   const [listIdState, setListIdState] = useRecoilState(listId);
   const [cardIdState, setCardIdState] = useRecoilState(cardId);
 
