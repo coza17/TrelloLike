@@ -1,5 +1,5 @@
 # TrelloLike
-
+创建列表与卡片，卡片具有标题、到期日、任务清单等信息，点击卡片可在弹窗修改数据，根据卡片内的数据表现在卡片样式上。通过react-beautiful-dnd实现拖拽，用于实现列表及卡片的优先级调用。
 ## 技术栈
 React + TypeScript + Recoil + Vite
 
