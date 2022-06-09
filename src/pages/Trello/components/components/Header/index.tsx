@@ -21,8 +21,8 @@ export default () => {
 
   const handleDelete=()=>{
     //删除卡片
-    cardDelete(cardState.id)
-    setModalState(false)
+    cardDelete(cardState.id);
+    setModalState(false);
   }
 
   const handleTextChange = () => {
@@ -45,7 +45,7 @@ export default () => {
         break;
       }
     }
-    cardUpdate(newCard,"dates")
+    cardUpdate(newCard,"dates");
   }
   
   return (

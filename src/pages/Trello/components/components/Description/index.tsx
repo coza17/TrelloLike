@@ -10,14 +10,14 @@ export default () => {
   const { cardState } = modalStore();
 
   useEffect(()=>{
-    setInputState(cardState.description)
-  },[cardState])
+    setInputState(cardState.description);
+  },[cardState]);
 
   const handleDescChange = () => {
     //更新卡片详情
-    const newCard={...cardState}
-    newCard.description=inputState
-    cardUpdate(newCard,"description")
+    const newCard={...cardState};
+    newCard.description=inputState;
+    cardUpdate(newCard,"description");
   };
 
   return (

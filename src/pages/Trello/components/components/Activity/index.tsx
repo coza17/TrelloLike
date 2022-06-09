@@ -11,8 +11,8 @@ export default () => {
   const { cardUpdate } = store();
   const { modalState,cardState } = modalStore();
   useEffect(()=>{
-    setInputState("")
-  },[modalState])
+    setInputState("");
+  },[modalState]);
   const handleActivityChange = () => {
     const newCard={...cardState};
     const newList=[...newCard.activity];
@@ -22,15 +22,15 @@ export default () => {
         time: moment().format('YYYY-MM-DD HH:mm:ss')
       });
       newCard.activity=newList;
-      cardUpdate(newCard,"activity")
-      setInputState("")
+      cardUpdate(newCard,"activity");
+      setInputState("");
     }
   };
   const handleDelete=(index:number)=>{
     console.log(index);
-    const newCard:cardType=JSON.parse(JSON.stringify(cardState))
-    newCard.activity.splice(index,1)
-    cardUpdate(newCard,"activity")
+    const newCard:cardType=JSON.parse(JSON.stringify(cardState));
+    newCard.activity.splice(index,1);
+    cardUpdate(newCard,"activity");
   }
   return (
     <div className={styles.body}>

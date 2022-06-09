@@ -20,8 +20,8 @@ export default () => {
 
   const cardClick=(id:string)=>{
     //卡片点击弹窗
-    setCardIdState(id)
-    setModalState(true)
+    setCardIdState(id);
+    setModalState(true);
   }
   return (
     <>

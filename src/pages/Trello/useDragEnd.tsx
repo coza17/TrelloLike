@@ -46,6 +46,6 @@ const useDragEnd =()=>{
         setState(newList);
       }
     };
-    return {handleDragEnd}
+    return {handleDragEnd};
 }
-export default useDragEnd
+export default useDragEnd;

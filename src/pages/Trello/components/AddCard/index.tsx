@@ -34,7 +34,7 @@ export default (props: { listId: number }) => {
               <Input.TextArea
                 onChange={(e) => setInputState(e.target.value)}
                 value={inputState}
-                autoSize={{ minRows: 1 }}
+                // autoSize={{ minRows: 1 }}
                 placeholder="为这张卡片输入标题..."
                 className={styles.input}
                 // bordered={false}
