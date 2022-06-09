@@ -33,6 +33,7 @@ export default () => {
                 placeholder="输入列表标题..."
                 onChange={(e) => setInputState(e.target.value)}
                 className={styles.input}
+                onPressEnter={handleAdd}
               />
               <div className={styles.button}>
                 <Button onClick={handleAdd} type="primary">
