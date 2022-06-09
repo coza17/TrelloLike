@@ -75,15 +75,17 @@ const trello = atom({
 const listId = atom({
   key: "list-id",
   default: 1,
+  effects_UNSTABLE: [persistAtom]
 });
 const cardId = atom({
   key: "card-id",
   default: 2,
+  effects_UNSTABLE: [persistAtom]
 });
 export default () => {
   const [state, setState] = useRecoilState<trelloType>(trello);
-  const [listIdState, setListIdState] = useRecoilState(listId);
-  const [cardIdState, setCardIdState] = useRecoilState(cardId);
+  const [listIdState, setListIdState] = useRecoilState<number>(listId);
+  const [cardIdState, setCardIdState] = useRecoilState<number>(cardId);
 
   const findCard = (cardId: string) => {
     //根据cardId查找卡片
